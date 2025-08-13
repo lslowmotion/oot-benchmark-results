@@ -1,0 +1,48 @@
+ik_llama
+unsloth/Qwen3-Coder-30B-A3B-Instruct-1M-IQ4_XS.gguf
+mem 6200c30 tightest
+fclk 2066
+pbo enhanced 3
+
+9800x3d
+2*24g
+5070 ti
+
+📦[LSlowmotion@fedora-ublue-box ik_llama.cpp]$ ./build_blis/bin/llama-bench \
+--model models/Qwen3-Coder-30B-A3B-Instruct-1M-IQ4_XS.gguf \
+-ctk q8_0 -ctv q8_0  \
+--threads 4,8,16 \
+-ngl 99 \
+-ot ".ffn_.*_exps.=CPU" \
+-fmoe 1 \
+-rtr 1 \
+-fa 1 \
+-p 512,1024,2048 \
+-n 128,256,512
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 5070 Ti, compute capability 12.0, VMM: yes
+| model                          |       size |     params | backend    | ngl | threads | type_k | type_v | fa | rtr | fmoe |          test |              t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -----: | -----: | -: | --: | ---: | ------------: | ---------------: |
+============ Repacked 144 tensors
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |         pp512 |    382.48 ± 3.49 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp1024 |    384.51 ± 0.36 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp2048 |    383.49 ± 0.23 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg128 |     46.44 ± 0.17 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg256 |     46.45 ± 0.12 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       4 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg512 |     46.39 ± 0.05 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |         pp512 |    696.21 ± 1.76 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp1024 |    698.80 ± 0.70 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp2048 |    693.32 ± 1.08 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg128 |     46.48 ± 0.18 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg256 |     46.52 ± 0.07 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |       8 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg512 |     46.50 ± 0.06 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |         pp512 |   708.80 ± 12.97 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp1024 |    712.10 ± 4.04 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |        pp2048 |    709.76 ± 1.35 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg128 |     44.57 ± 0.31 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg256 |     44.44 ± 0.28 |
+| qwen3moe ?B IQ4_XS - 4.25 bpw  |  15.25 GiB |    30.53 B | CUDA       |  99 |      16 |   q8_0 |   q8_0 |  1 |   1 |    1 |         tg512 |     44.46 ± 0.38 |
+
+build: ae0ba31f (3826)
